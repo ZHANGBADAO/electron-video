@@ -3,7 +3,7 @@
 
 const Crawler = require('crawler')
 
-function searchFromWebhd(keyword) {
+function searchFromSubhd(keyword) {
     return new Promise((resolve, reject) => {
         const crawler = new Crawler({
             // rateLimit: 500, // `maxConnections` will be forced to 1
@@ -31,14 +31,20 @@ function searchFromWebhd(keyword) {
                     let resultArr = []
                     let divArr = $('body > div.container > div > div > div > div.col-lg-9.pe-lg-4 > div.bg-white')
                     divArr.each(function (){
+                        //字幕语言的描述
+                        let descArr = []
+                        $(this).find('.pt-2.f11 > .p-1').each(function (){
+                            debugger
+                            if ($(this).children.length === 1) {
+                                descArr.push($(this).text())
+                            }
+                        })
+
                         resultArr.push({
                             nameCn: $(this).find('a.link-dark.align-middle').text(),
-                            desc: $(this).find('.text-secondary a.link-dark').text(),
-
-                            url: 'https://webhd.cc'+ $(this).find('.col-10 .f16 a').attr('href'),
-                            imgUrl: $(this).find('.col-2 img').attr('src'),
-                            subUrl: $(this).find('.col-10 .position-absolute .ps-2 a').attr('href'),
-                            descUrl: $(this).find('.col-10 .position-absolute > a.btn').attr('href'),
+                            season: $(this).find('.ms-2 > .f12.fw-normal').text(),
+                            match: $(this).find('.text-secondary a.link-dark').text(),//匹配的片源
+                            desc: descArr,
                         })
                     })
 
@@ -50,4 +56,4 @@ function searchFromWebhd(keyword) {
     })
 }
 
-module.exports = searchFromWebhd
+module.exports = searchFromSubhd

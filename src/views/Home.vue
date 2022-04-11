@@ -20,6 +20,11 @@ function menuItemClick(site:string) {
   }
 
   if (site === 'webhd.cc') searchFromWebhdcc()
+  if (site === 'subhd.tv') searchFromSubhdtv()
+}
+function menuSelectFn(index:string, indexPath:string, item:object) {
+  // defaultActiveMenu.value = index
+  console.log(item)
 }
 //从webhd.cc搜索
 function searchFromWebhdcc(){
@@ -27,6 +32,17 @@ function searchFromWebhdcc(){
   //@ts-ignore
   window.myAPI.searchFromWebhd(input.value).then((res)=>{
     console.log('webhd.cc的搜索结果',res)
+    tableData.value = res
+  }).finally(() => {
+    loading.value = false
+  })
+}
+//从subhd.tv搜索
+function searchFromSubhdtv(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromSubhd(input.value).then((res)=>{
+    console.log('subhd.tv的搜索结果',res)
     tableData.value = res
   }).finally(() => {
     loading.value = false
@@ -54,9 +70,11 @@ function openBrowser(url:string) {
           </el-col>
         </el-row>
       </el-header>
+
       <el-container>
         <el-aside width="200px">
           <el-menu
+              @select="menuSelectFn"
               :default-active="defaultActiveMenu"
               :default-openeds="['1', '2']"
               class="el-menu-vertical-demo"
@@ -68,11 +86,16 @@ function openBrowser(url:string) {
               <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">webhd.cc</el-menu-item>
 
             </el-sub-menu>
-            <el-menu-item index="2">
-              <span>字幕</span>
-            </el-menu-item>
+            <el-sub-menu index="2">
+              <template #title>
+                <span>字幕</span>
+              </template>
+              <el-menu-item index="2-1" @click="menuItemClick('subhd.tv')">subhd.tv</el-menu-item>
+
+            </el-sub-menu>
           </el-menu>
         </el-aside>
+
         <el-main>
           <el-table v-loading="loading" :data="tableData" border stripe style="width: 100%">
             <el-table-column label="海报">
