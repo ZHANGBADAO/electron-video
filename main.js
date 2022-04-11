@@ -1,17 +1,25 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+
+if (require('electron-squirrel-startup')) return app.quit();
+
 function createWindow () {
     const win = new BrowserWindow({
         width: 1280,
         height: 720,
         webPreferences: {
-            preload: path.join(__dirname, 'preload.js')
+            preload: path.join(__dirname, './preload/preload.js'),
+            nodeIntegration: true,
         }
     })
 
-    win.loadURL('http://localhost:3000/')
-    // win.loadFile('./vue/dist/index.html')
+    if (app.isPackaged) {
+        win.loadFile('./dist/index.html')
+    } else {
+        win.loadURL('http://10.1.6.196:8080/')
+    }
 
     win.maximize()
 }
@@ -21,5 +29,5 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') app.quit()
+    app.quit()
 })
