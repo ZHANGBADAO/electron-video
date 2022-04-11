@@ -34,15 +34,16 @@ function searchFromSubhd(keyword) {
                         //字幕语言的描述
                         let descArr = []
                         $(this).find('.pt-2.f11 > .p-1').each(function (){
-                            debugger
-                            if ($(this).children.length === 1) {
+                            if ($(this).children().length === 0) {
                                 descArr.push($(this).text())
                             }
                         })
 
                         resultArr.push({
+                            imgUrl: $(this).find('img.rounded-start').attr('src'),
                             nameCn: $(this).find('a.link-dark.align-middle').text(),
                             season: $(this).find('.ms-2 > .f12.fw-normal').text(),
+                            subUrl: 'https://subhd.tv'+ $(this).find('a.link-dark.align-middle').attr('href'),//字幕地址
                             match: $(this).find('.text-secondary a.link-dark').text(),//匹配的片源
                             desc: descArr,
                         })

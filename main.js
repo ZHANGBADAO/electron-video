@@ -7,8 +7,8 @@ if (require('electron-squirrel-startup')) return app.quit();
 
 function createWindow () {
     const win = new BrowserWindow({
-        width: 1280,
-        height: 720,
+        width: 1500,
+        height: 900,
         webPreferences: {
             preload: path.join(__dirname, './preload/preload.js'),
             nodeIntegration: true,
@@ -18,10 +18,10 @@ function createWindow () {
     if (app.isPackaged) {
         win.loadFile('./dist/index.html')
     } else {
-        win.loadURL('http://10.1.6.196:8080/')
+        win.loadURL('http://localhost:8080')
     }
 
-    win.maximize()
+    // win.maximize()
 }
 
 app.whenReady().then(() => {

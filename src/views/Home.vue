@@ -1,31 +1,37 @@
 <script setup lang="ts">
-import {ref, reactive} from 'vue'
+import {ref, reactive, shallowRef} from 'vue'
 import { ElMessage } from 'element-plus'
+import webhdComponent from './components/webhd.vue'
+import subhdComponent from './components/subhd.vue'
 
-let input = ref('')
+let input = ref('')//搜索关键词
+let _selectedMenu = '' //当前选择的菜单
 let defaultActiveMenu = ref('1-1')
-let tableData = ref([])
+
+let componentName = shallowRef(webhdComponent)//右侧的组件名字
+let tableData = ref([])//表格数据
 let loading = ref(false)
 
 //搜索按钮
 function searchFn() {
-  defaultActiveMenu.value = '1-1'
-  menuItemClick('webhd.cc')
+  if (!_selectedMenu) {
+    _selectedMenu = 'webhd.cc'
+  }
+  menuItemClick(_selectedMenu)
 }
-//左侧导航搜索
+//点击左侧导航
 function menuItemClick(site:string) {
+  _selectedMenu = site
+
   if (!input.value) {
     ElMessage.error('请输入关键词')
     return
   }
 
-  if (site === 'webhd.cc') searchFromWebhdcc()
-  if (site === 'subhd.tv') searchFromSubhdtv()
+  if (_selectedMenu === 'webhd.cc') searchFromWebhdcc()
+  if (_selectedMenu === 'subhd.tv') searchFromSubhdtv()
 }
-function menuSelectFn(index:string, indexPath:string, item:object) {
-  // defaultActiveMenu.value = index
-  console.log(item)
-}
+
 //从webhd.cc搜索
 function searchFromWebhdcc(){
   loading.value = true
@@ -33,6 +39,7 @@ function searchFromWebhdcc(){
   window.myAPI.searchFromWebhd(input.value).then((res)=>{
     console.log('webhd.cc的搜索结果',res)
     tableData.value = res
+    componentName.value = webhdComponent
   }).finally(() => {
     loading.value = false
   })
@@ -44,15 +51,13 @@ function searchFromSubhdtv(){
   window.myAPI.searchFromSubhd(input.value).then((res)=>{
     console.log('subhd.tv的搜索结果',res)
     tableData.value = res
+    componentName.value = subhdComponent
   }).finally(() => {
     loading.value = false
   })
 }
-//点击链接打开浏览器
-function openBrowser(url:string) {
-  //@ts-ignore
-  window.myAPI.openBrowser(url)
-}
+
+
 </script>
 
 <template>
@@ -74,7 +79,6 @@ function openBrowser(url:string) {
       <el-container>
         <el-aside width="200px">
           <el-menu
-              @select="menuSelectFn"
               :default-active="defaultActiveMenu"
               :default-openeds="['1', '2']"
               class="el-menu-vertical-demo"
@@ -97,30 +101,14 @@ function openBrowser(url:string) {
         </el-aside>
 
         <el-main>
-          <el-table v-loading="loading" :data="tableData" border stripe style="width: 100%">
-            <el-table-column label="海报">
-              <template #default="scope">
-                <img :src="scope.row.imgUrl" alt="" style="width: 100px">
-              </template>
-            </el-table-column>
-            <el-table-column prop="nameCn" label="名字(中文)" width="180" />
-            <el-table-column prop="nameEn" label="名字(英文)" width="180" />
-            <el-table-column label="视频地址">
-              <template #default="scope">
-                <span style="cursor: pointer" @click="openBrowser(scope.row.url)">{{scope.row.url}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="字幕地址">
-              <template #default="scope">
-                <span style="cursor: pointer" @click="openBrowser(scope.row.subUrl)">{{scope.row.subUrl}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column label="介绍">
-              <template #default="scope">
-                <span style="cursor: pointer" @click="openBrowser(scope.row.descUrl)">{{scope.row.descUrl}}</span>
-              </template>
-            </el-table-column>
-          </el-table>
+          <keep-alive>
+            <component
+                :is="componentName"
+                :tableData="tableData"
+                :loading="loading"
+            >
+            </component>
+          </keep-alive>
         </el-main>
       </el-container>
     </el-container>
