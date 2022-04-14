@@ -3,8 +3,6 @@ const path = require('path')
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
-if (require('electron-squirrel-startup')) return app.quit();
-
 function createWindow () {
     const win = new BrowserWindow({
         width: 1500,
