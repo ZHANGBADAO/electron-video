@@ -7,14 +7,12 @@
     "vue serve": "vue-cli-service serve",
     "vue build": "vue-cli-service build",
     "electron start": "electron-forge start",
-    "electron package": "electron-forge package",
-    "electron make": "electron-forge make",
     "electron-builder": "electron-builder"
   },
   "author": "zhang badao",
   "license": "ISC",
   "build": {
-    "productName":"electron-video",
+    "productName": "electron-video",
     "directories": {
       "output": "out"
     },
@@ -36,13 +34,12 @@
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-router": "~4.5.13",
     "@vue/cli-plugin-typescript": "~4.5.13",
     "@vue/cli-service": "~4.5.13",
     "@vue/compiler-sfc": "^3.0.0",
-    "electron": "^18.0.1",
+    "electron": "^18.0.3",
     "electron-builder": "^23.0.3",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
@@ -56,18 +53,5 @@
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "element-plus": "^2.1.8"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "electron_video"
-          }
-        }
-      ]
-    }
   }
 }
