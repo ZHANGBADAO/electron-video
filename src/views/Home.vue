@@ -3,6 +3,7 @@ import {ref, reactive, shallowRef} from 'vue'
 import { ElMessage } from 'element-plus'
 import webhdComponent from './components/webhd.vue'
 import subhdComponent from './components/subhd.vue'
+import gaoqingComponent from './components/gaoqing.vue'
 
 let input = ref('')//搜索关键词
 let _selectedMenu = '' //当前选择的菜单
@@ -30,6 +31,7 @@ function menuItemClick(site:string) {
 
   if (_selectedMenu === 'webhd.cc') searchFromWebhdcc()
   if (_selectedMenu === 'subhd.tv') searchFromSubhdtv()
+  if (_selectedMenu === 'gaoqing.fm') searchFromGaoqing()
 }
 
 //从webhd.cc搜索
@@ -56,7 +58,18 @@ function searchFromSubhdtv(){
     loading.value = false
   })
 }
-
+//gaoqing.fm搜索
+function searchFromGaoqing(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromGaoqing(input.value).then((res)=>{
+    console.log('gaoqing.fm的搜索结果',res)
+    tableData.value = res
+    componentName.value = gaoqingComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
 
 </script>
 
@@ -88,6 +101,7 @@ function searchFromSubhdtv(){
                 <span>视频</span>
               </template>
               <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">webhd.cc</el-menu-item>
+              <el-menu-item index="1-2" @click="menuItemClick('gaoqing.fm')">gaoqing.fm</el-menu-item>
 
             </el-sub-menu>
             <el-sub-menu index="2">
