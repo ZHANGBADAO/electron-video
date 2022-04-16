@@ -6,7 +6,7 @@
   "scripts": {
     "vue serve": "vue-cli-service serve",
     "vue build": "vue-cli-service build",
-    "electron start": "electron-forge start",
+    "electron start": "electron ./",
     "electron-builder": "electron-builder"
   },
   "author": "zhang badao",
@@ -33,7 +33,6 @@
     }
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.63",
     "@vue/cli-plugin-babel": "~4.5.13",
     "@vue/cli-plugin-router": "~4.5.13",
     "@vue/cli-plugin-typescript": "~4.5.13",

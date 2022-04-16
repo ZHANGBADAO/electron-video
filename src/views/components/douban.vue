@@ -11,6 +11,13 @@
         <span style="cursor: pointer" @click="openBrowser(scope.row.url)">{{scope.row.url}}</span>
       </template>
     </el-table-column>
+    <el-table-column label="评分">
+      <template #default="scope">
+        {{scope.row.rating_nums}}{{scope.row.rating_people}}
+      </template>
+    </el-table-column>
+    <el-table-column prop="type" label="类型" />
+    <el-table-column prop="actor" label="主演" />
   </el-table>
 </template>
 

@@ -4,6 +4,7 @@ import { ElMessage } from 'element-plus'
 import webhdComponent from './components/webhd.vue'
 import subhdComponent from './components/subhd.vue'
 import gaoqingComponent from './components/gaoqing.vue'
+import doubanComponent from './components/douban.vue'
 
 let input = ref('')//搜索关键词
 let _selectedMenu = '' //当前选择的菜单
@@ -32,6 +33,7 @@ function menuItemClick(site:string) {
   if (_selectedMenu === 'webhd.cc') searchFromWebhdcc()
   if (_selectedMenu === 'subhd.tv') searchFromSubhdtv()
   if (_selectedMenu === 'gaoqing.fm') searchFromGaoqing()
+  if (_selectedMenu === '豆瓣') searchFromDouban()
 }
 
 //从webhd.cc搜索
@@ -70,7 +72,18 @@ function searchFromGaoqing(){
     loading.value = false
   })
 }
-
+//豆瓣搜索
+function searchFromDouban(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromDouban(input.value).then((res)=>{
+    console.log('豆瓣的搜索结果',res)
+    tableData.value = res
+    componentName.value = doubanComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
 </script>
 
 <template>
@@ -102,6 +115,7 @@ function searchFromGaoqing(){
               </template>
               <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">webhd.cc</el-menu-item>
               <el-menu-item index="1-2" @click="menuItemClick('gaoqing.fm')">gaoqing.fm</el-menu-item>
+              <el-menu-item index="1-3" @click="menuItemClick('豆瓣')">豆瓣</el-menu-item>
 
             </el-sub-menu>
             <el-sub-menu index="2">
