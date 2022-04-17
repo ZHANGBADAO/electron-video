@@ -3,6 +3,8 @@ const searchFromWebhd = require('./webhd')
 const searchFromSubhd = require('./subhd')
 const searchFromGaoqing = require('./gaoqing')
 const searchFromDouban = require('./douban')
+const searchFromShooter = require('./shooter')
+const searchFromTorlock = require('./torlock')
 const open = require('open')
 
 function openBrowser(url) {
@@ -13,5 +15,7 @@ contextBridge.exposeInMainWorld('myAPI', {
     searchFromSubhd,
     searchFromGaoqing,
     searchFromDouban,
+    searchFromShooter,
+    searchFromTorlock,
     openBrowser,
 })

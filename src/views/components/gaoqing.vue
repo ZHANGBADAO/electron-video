@@ -1,5 +1,5 @@
 <template>
-  <el-table v-loading="props.loading" :data="props.tableData" border stripe style="width: 100%">
+  <el-table v-loading="props.loading" :data="props.tableData" height="680" border stripe style="width: 100%">
     <el-table-column label="海报">
       <template #default="scope">
         <img :src="scope.row.imgUrl" alt="" style="width: 100px">
@@ -22,7 +22,6 @@ const props = defineProps({
   loading: Boolean,
 })
 onMounted(() => {
-  console.log('onMounted')
 })
 //点击链接打开浏览器
 function openBrowser(url:string) {

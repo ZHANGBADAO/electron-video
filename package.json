@@ -1,7 +1,7 @@
 {
   "name": "electron-video",
   "version": "1.0.0",
-  "description": "搜索电影",
+  "description": "搜索影视和字幕",
   "main": "main.js",
   "scripts": {
     "vue serve": "vue-cli-service serve",
@@ -12,9 +12,9 @@
   "author": "zhang badao",
   "license": "ISC",
   "build": {
-    "productName": "electron-video",
+    "productName": "Video Hunter",
     "directories": {
-      "output": "out"
+      "output": "release"
     },
     "nsis": {
       "oneClick": false,

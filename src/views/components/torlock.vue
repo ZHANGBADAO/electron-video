@@ -1,25 +1,30 @@
 <template>
   <el-table v-loading="props.loading" :data="props.tableData" height="680" border stripe style="width: 100%">
-    <el-table-column label="海报">
+    <el-table-column label="名字" width="600">
       <template #default="scope">
-        <img :src="scope.row.imgUrl" alt="" style="width: 100px">
+        <div v-html="scope.row.nameCn"
+             style="cursor: pointer" @click="openBrowser(scope.row.url)"
+        ></div>
       </template>
     </el-table-column>
-    <el-table-column prop="nameCn" label="名字(中文)" width="180" />
-    <el-table-column prop="nameEn" label="名字(英文)" width="180" />
-    <el-table-column label="视频地址">
+    <el-table-column label="文件大小">
       <template #default="scope">
-        <span style="cursor: pointer" @click="openBrowser(scope.row.url)">{{scope.row.url}}</span>
+        <div v-html="scope.row.size"></div>
       </template>
     </el-table-column>
-    <el-table-column label="字幕地址">
+    <el-table-column label="添加时间">
       <template #default="scope">
-        <span style="cursor: pointer" @click="openBrowser(scope.row.subUrl)">{{scope.row.subUrl}}</span>
+        <div v-html="scope.row.addTime"></div>
       </template>
     </el-table-column>
-    <el-table-column label="介绍">
+    <el-table-column label="做种人数">
       <template #default="scope">
-        <span style="cursor: pointer" @click="openBrowser(scope.row.descUrl)">{{scope.row.descUrl}}</span>
+        <div v-html="scope.row.seeds"></div>
+      </template>
+    </el-table-column>
+    <el-table-column label="peers">
+      <template #default="scope">
+        <div v-html="scope.row.peers"></div>
       </template>
     </el-table-column>
   </el-table>

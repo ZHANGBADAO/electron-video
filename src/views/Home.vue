@@ -1,10 +1,18 @@
 <script setup lang="ts">
-import {ref, reactive, shallowRef} from 'vue'
+import {ref, reactive, shallowRef, onMounted} from 'vue'
 import { ElMessage } from 'element-plus'
 import webhdComponent from './components/webhd.vue'
 import subhdComponent from './components/subhd.vue'
 import gaoqingComponent from './components/gaoqing.vue'
 import doubanComponent from './components/douban.vue'
+import shooterComponent from './components/shooter.vue'
+import torlockComponent from './components/torlock.vue'
+import iframeComponent from './components/iframeComponent.vue'
+
+onMounted(() => {
+  // new Notification('NOTIFICATION_TITLE', { body: 'NOTIFICATION_BODY' })
+
+})
 
 let input = ref('')//搜索关键词
 let _selectedMenu = '' //当前选择的菜单
@@ -33,7 +41,9 @@ function menuItemClick(site:string) {
   if (_selectedMenu === 'webhd.cc') searchFromWebhdcc()
   if (_selectedMenu === 'subhd.tv') searchFromSubhdtv()
   if (_selectedMenu === 'gaoqing.fm') searchFromGaoqing()
-  if (_selectedMenu === '豆瓣') searchFromDouban()
+  if (_selectedMenu === '豆瓣搜索') searchFromDouban()
+  if (_selectedMenu === '射手') searchFromShooter()
+  if (_selectedMenu === 'torlock.com') searchFromTorlock()
 }
 
 //从webhd.cc搜索
@@ -72,17 +82,48 @@ function searchFromGaoqing(){
     loading.value = false
   })
 }
-//豆瓣搜索
+//豆瓣搜索搜索
 function searchFromDouban(){
   loading.value = true
   //@ts-ignore
   window.myAPI.searchFromDouban(input.value).then((res)=>{
-    console.log('豆瓣的搜索结果',res)
+    console.log('豆瓣搜索的搜索结果',res)
     tableData.value = res
     componentName.value = doubanComponent
   }).finally(() => {
     loading.value = false
   })
+}
+//射手搜索
+function searchFromShooter(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromShooter(input.value).then((res)=>{
+    console.log('射手的搜索结果',res)
+    tableData.value = res
+    componentName.value = shooterComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
+//torlock搜索
+function searchFromTorlock(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromTorlock(input.value).then((res)=>{
+    console.log('torlock的搜索结果',res)
+    tableData.value = res
+    componentName.value = torlockComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
+
+// 跳转到iframe页面
+const iframeUrl = ref('')
+function menuItemJump(url) {
+  iframeUrl.value = url
+  componentName.value = iframeComponent
 }
 </script>
 
@@ -108,21 +149,33 @@ function searchFromDouban(){
               :default-active="defaultActiveMenu"
               :default-openeds="['1', '2']"
               class="el-menu-vertical-demo"
+              active-text-color="#409EFF"
+              background-color="#F2F6FC"
+              text-color="#606266"
           >
             <el-sub-menu index="1">
               <template #title>
                 <span>视频</span>
               </template>
-              <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">webhd.cc</el-menu-item>
-              <el-menu-item index="1-2" @click="menuItemClick('gaoqing.fm')">gaoqing.fm</el-menu-item>
-              <el-menu-item index="1-3" @click="menuItemClick('豆瓣')">豆瓣</el-menu-item>
+              <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">webhd.cc (推荐)</el-menu-item>
+              <el-menu-item index="1-2" @click="menuItemClick('豆瓣搜索')">豆瓣搜索</el-menu-item>
+              <el-menu-item index="1-3" @click="menuItemClick('gaoqing.fm')">gaoqing.fm</el-menu-item>
+              <el-menu-item index="1-4" @click="menuItemClick('torlock.com')">torlock.com (需翻墙)</el-menu-item>
 
             </el-sub-menu>
             <el-sub-menu index="2">
               <template #title>
                 <span>字幕</span>
               </template>
-              <el-menu-item index="2-1" @click="menuItemClick('subhd.tv')">subhd.tv</el-menu-item>
+              <el-menu-item index="2-1" @click="menuItemClick('subhd.tv')">subhd.tv (推荐)</el-menu-item>
+              <el-menu-item index="2-2" @click="menuItemClick('射手')">射手</el-menu-item>
+
+            </el-sub-menu>
+            <el-sub-menu index="3">
+              <template #title>
+                <span>视频网站</span>
+              </template>
+              <el-menu-item index="3-1" @click="menuItemJump('https://movie.douban.com/')">豆瓣电影</el-menu-item>
 
             </el-sub-menu>
           </el-menu>
@@ -133,6 +186,7 @@ function searchFromDouban(){
             <component
                 :is="componentName"
                 :tableData="tableData"
+                :iframeUrl="iframeUrl"
                 :loading="loading"
             >
             </component>
@@ -147,5 +201,18 @@ function searchFromDouban(){
 <style scoped lang="scss">
 .common-layout {
   padding: 30px;
+  .el-aside{
+    overflow: unset;
+    .el-menu{
+      border-right: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, .15);
+    }
+
+  }
+  .el-main{
+    padding-top: 0;
+  }
 }
 </style>

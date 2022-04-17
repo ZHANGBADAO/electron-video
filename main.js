@@ -8,7 +8,7 @@ function createWindow () {
         width: 1500,
         height: 900,
         webPreferences: {
-            preload: path.join(__dirname, './preload/preload.js'),
+            preload: path.join(__dirname, './preload/index.js'),
             nodeIntegration: true,
         }
     })
@@ -17,6 +17,7 @@ function createWindow () {
         win.loadFile('./dist/index.html')
     } else {
         win.loadURL('http://localhost:8080')
+        win.webContents.openDevTools({mode:'bottom'})
     }
 
     // win.maximize()
