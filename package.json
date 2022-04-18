@@ -2,6 +2,7 @@
   "name": "electron-video",
   "version": "1.0.0",
   "description": "搜索影视和字幕",
+  "repository": "https://github.com/ZHANGBADAO/electron-video",
   "main": "main.js",
   "scripts": {
     "vue serve": "vue-cli-service serve",
@@ -45,12 +46,11 @@
     "typescript": "~4.1.5"
   },
   "dependencies": {
-    "crawler": "^1.3.0",
-    "node-notifier": "^10.0.1",
-    "open": "^8.4.0",
     "core-js": "^3.6.5",
+    "crawler": "^1.3.0",
+    "element-plus": "^2.1.8",
+    "open": "^8.4.0",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0",
-    "element-plus": "^2.1.8"
+    "vue-router": "^4.0.0-0"
   }
 }
