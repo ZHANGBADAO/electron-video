@@ -121,7 +121,7 @@ function searchFromTorlock(){
 
 // 跳转到iframe页面
 const iframeUrl = ref('')
-function menuItemJump(url) {
+function menuItemJump(url:string) {
   iframeUrl.value = url
   componentName.value = iframeComponent
 }
