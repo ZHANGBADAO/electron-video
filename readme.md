@@ -26,3 +26,6 @@
    并解压到此目录下   
    `%LOCALAPPDATA%\electron-builder\Cache\nsis\nsis-resources-X.X.X` 
 
+
+#安装vue浏览器扩展到electron里的控制台, 方便调试代码
+https://www.npmjs.com/package/electron-devtools-installer

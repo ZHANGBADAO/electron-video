@@ -3,7 +3,6 @@
         <iframe :src="iframeUrl"
                 height="680"
                 width="100%"
-                frameborder="0"
         ></iframe>
     </div>
 </template>
@@ -17,6 +16,8 @@ defineProps({
 })
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+iframe{
+  border: 0;
+}
 </style>
