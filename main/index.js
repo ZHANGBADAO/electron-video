@@ -1,7 +1,17 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
+const initPrinters = require('./print')
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+
+app.whenReady().then(() => {
+  const win = createWindow()
+  initPrinters(win)
+})
+
+app.on('window-all-closed', function () {
+  app.quit()
+})
 
 function createWindow () {
     const win = new BrowserWindow({
@@ -20,13 +30,7 @@ function createWindow () {
         win.webContents.openDevTools({mode:'bottom'})
     }
 
-    // win.maximize()
+    return win
 }
 
-app.whenReady().then(() => {
-    createWindow()
-})
 
-app.on('window-all-closed', function () {
-    app.quit()
-})

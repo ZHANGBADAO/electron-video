@@ -1,0 +1,6 @@
+root = true
+
+#全部文件
+[*]
+indent_style = space
+indent_size = 2

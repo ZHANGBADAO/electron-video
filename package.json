@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "搜索影视和字幕",
   "repository": "https://github.com/ZHANGBADAO/electron-video",
-  "main": "main.js",
+  "main": "main/index.js",
   "scripts": {
     "vue serve": "vue-cli-service serve",
     "vue build": "vue-cli-service build",
