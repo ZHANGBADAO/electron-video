@@ -1,0 +1,11 @@
+{
+  "name": "electron-video",
+  "version": "1.0.0",
+  "description": "搜索影视和字幕",
+  "main": "main/index.js",
+  "author": "zhang badao",
+  "license": "ISC",
+  "dependencies": {
+    "crawler": "^1.3.0"
+  }
+}

@@ -10,12 +10,18 @@ module.exports = function (win) {
     }
 
     if (arg === 'startPrint') {
-      console.log('startPrint')
+      event.returnValue = '开始打印~'
+
       win.webContents.print({
-          deviceName: 'Microsoft Print to PDF'
+          deviceName: 'OneNote for Windows 10',
+          silent: true,
         },
         (success, errorType) => {
-          if (!success) console.log(errorType)
+          if (success) {
+            console.log('打印成功')
+          } else {
+            console.log('打印失败', errorType)
+          }
         })
     }
 

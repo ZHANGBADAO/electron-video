@@ -24,7 +24,7 @@ function createWindow () {
     })
 
     if (app.isPackaged) {
-        win.loadFile('./dist/index.html')
+        win.loadFile('dist/index.html')
     } else {
         win.loadURL('http://localhost:8080')
         win.webContents.openDevTools({mode:'bottom'})
