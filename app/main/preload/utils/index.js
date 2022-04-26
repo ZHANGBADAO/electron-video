@@ -1,11 +1,21 @@
 const { ipcRenderer } = require('electron')
 
 function getAllPrintFn () {
-  return ipcRenderer.sendSync('print', 'getAllPrint')
+  return new Promise((resolve, reject) => {
+    ipcRenderer.send('print', 'getAllPrint')
+    ipcRenderer.on('print', (event, arg) => {
+      resolve(arg)
+    })
+  })
 }
 
 function startPrintFn () {
-  return ipcRenderer.sendSync('print', 'startPrint')
+  return new Promise((resolve, reject) => {
+    ipcRenderer.send('print', 'startPrint')
+    ipcRenderer.on('print', (event, arg) => {
+      resolve(arg)
+    })
+  })
 }
 
 module.exports = {

@@ -7,12 +7,16 @@
 
 const getPrintDevice = () => {
   //@ts-ignore
-  console.log(window.myAPI.utils.getAllPrintFn())
+  window.myAPI.utils.getAllPrintFn().then(res => {
+    console.log(res);
+  });
 }
 
 const startPrint = () => {
   //@ts-ignore
-  console.log(window.myAPI.utils.startPrintFn())
+  window.myAPI.utils.startPrintFn().then(res => {
+    console.log(res);
+  });
 }
 </script>
 

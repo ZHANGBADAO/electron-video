@@ -5,22 +5,20 @@ module.exports = function (win) {
 
     if (arg === 'getAllPrint') {
       win.webContents.getPrintersAsync().then(printers => {
-        event.returnValue = printers
+        event.reply('print', printers)
       })
     }
 
     if (arg === 'startPrint') {
-      event.returnValue = '开始打印~'
-
       win.webContents.print({
-          deviceName: 'OneNote for Windows 10',
+          deviceName: 'MF240 Series',
           silent: true,
         },
         (success, errorType) => {
           if (success) {
-            console.log('打印成功')
+            event.reply('print', '打印成功~')
           } else {
-            console.log('打印失败', errorType)
+            event.reply('print', `打印失败: ${errorType}`)
           }
         })
     }
