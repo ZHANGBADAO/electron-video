@@ -21,7 +21,7 @@
       "allowToChangeInstallationDirectory": true
     },
     "win": {
-      "icon": "./app/build/icon.png",
+      "icon": "./app/build/icon.ico",
       "target": [
         {
           "target": "nsis",
