@@ -9,7 +9,7 @@ module.exports = function (keyword) {
 
     crawler.queue([
       {
-        uri: `https://yts.mx/ajax/search?query=${keyword}`,
+        uri: `https://yts.mx/ajax/search?query=${encodeURI(keyword)}`,
         headers: {},
         jQuery: false,
         userAgent:

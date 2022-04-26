@@ -4,6 +4,8 @@ import {onMounted, ref} from 'vue'
 onMounted(() => {
 })
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const activeIndex = ref('/home')
 function handleSelect(index: string) {
   console.log(index)
@@ -20,7 +22,7 @@ function handleSelect(index: string) {
         @select="handleSelect"
     >
       <el-menu-item index="/home">搜索影视</el-menu-item>
-      <el-menu-item index="/test">测试</el-menu-item>
+      <el-menu-item index="/test" v-if="!isProduction">测试</el-menu-item>
     </el-menu>
 
     <div class="content">
