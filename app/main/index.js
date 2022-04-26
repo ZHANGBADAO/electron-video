@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const initPrinters = require('./print')
 
@@ -13,24 +13,27 @@ app.on('window-all-closed', function () {
   app.quit()
 })
 
-function createWindow () {
-    const win = new BrowserWindow({
-        width: 1500,
-        height: 900,
-        webPreferences: {
-            preload: path.join(__dirname, './preload/index.js'),
-            nodeIntegration: true,
-        }
-    })
-
-    if (app.isPackaged) {
-        win.loadFile('dist/index.html')
-    } else {
-        win.loadURL('http://localhost:8080')
-        win.webContents.openDevTools({mode:'bottom'})
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 1500,
+    height: 900,
+    webPreferences: {
+      preload: path.join(__dirname, './preload/index.js'),
+      nodeIntegration: true,
     }
+  })
 
-    return win
+  if (app.isPackaged) {
+    // 正式环境
+    win.loadFile('dist/index.html')
+  } else {
+    // 开发环境
+    win.maximize()
+    win.loadURL('http://localhost:8080')
+    win.webContents.openDevTools({mode: 'bottom'})
+  }
+
+  return win
 }
 
 

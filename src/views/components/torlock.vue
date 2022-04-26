@@ -1,5 +1,5 @@
 <template>
-  <el-table v-loading="props.loading" :data="props.tableData" height="680" border stripe style="width: 100%">
+  <el-table v-loading="props.loading" :data="props.tableData" height="620" border stripe style="width: 100%">
     <el-table-column label="名字" width="600">
       <template #default="scope">
         <div v-html="scope.row.nameCn"

@@ -7,6 +7,8 @@ import gaoqingComponent from './components/gaoqing.vue'
 import doubanComponent from './components/douban.vue'
 import shooterComponent from './components/shooter.vue'
 import torlockComponent from './components/torlock.vue'
+import ytsMxComponent from './components/ytsMx.vue'
+import yysubComponent from './components/yysub.vue'
 import iframeComponent from './components/iframeComponent.vue'
 
 onMounted(() => {
@@ -44,6 +46,8 @@ function menuItemClick(site:string) {
   if (_selectedMenu === '豆瓣搜索') searchFromDouban()
   if (_selectedMenu === '射手') searchFromShooter()
   if (_selectedMenu === 'torlock.com') searchFromTorlock()
+  if (_selectedMenu === 'yts.mx') searchFromYtsMx()
+  if (_selectedMenu === '人人影视') searchFromYysub()
 }
 
 //从webhd.cc搜索
@@ -118,7 +122,30 @@ function searchFromTorlock(){
     loading.value = false
   })
 }
-
+//yts.mx搜索
+function searchFromYtsMx(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromYtsMx(input.value).then((res)=>{
+    console.log('yts.mx的搜索结果',res)
+    tableData.value = res
+    componentName.value = ytsMxComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
+//yysub.net 人人影视搜索
+function searchFromYysub(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromYysub(input.value).then((res)=>{
+    console.log('人人影视的搜索结果',res)
+    tableData.value = res
+    componentName.value = yysubComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
 // 跳转到iframe页面
 const iframeUrl = ref('')
 function menuItemJump(url:string) {
@@ -161,6 +188,7 @@ function menuItemJump(url:string) {
               <el-menu-item index="1-2" @click="menuItemClick('豆瓣搜索')">豆瓣搜索</el-menu-item>
               <el-menu-item index="1-3" @click="menuItemClick('gaoqing.fm')">gaoqing.fm</el-menu-item>
               <el-menu-item index="1-4" @click="menuItemClick('torlock.com')">torlock.com (需翻墙)</el-menu-item>
+              <el-menu-item index="1-5" @click="menuItemClick('yts.mx')">yts.mx</el-menu-item>
 
             </el-sub-menu>
             <el-sub-menu index="2">
@@ -168,7 +196,8 @@ function menuItemJump(url:string) {
                 <span>字幕</span>
               </template>
               <el-menu-item index="2-1" @click="menuItemClick('subhd.tv')">subhd.tv (推荐)</el-menu-item>
-              <el-menu-item index="2-2" @click="menuItemClick('射手')">射手</el-menu-item>
+              <el-menu-item index="2-2" @click="menuItemClick('人人影视')">人人影视</el-menu-item>
+              <el-menu-item index="2-3" @click="menuItemClick('射手')">射手</el-menu-item>
 
             </el-sub-menu>
             <el-sub-menu index="3">

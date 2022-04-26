@@ -1,5 +1,5 @@
 <template>
-  <el-table v-loading="props.loading" :data="props.tableData" height="680" border stripe style="width: 100%">
+  <el-table v-loading="props.loading" :data="props.tableData" height="620" border stripe style="width: 100%">
     <el-table-column label="海报">
       <template #default="scope">
         <img :src="scope.row.imgUrl" alt="" style="width: 100px">
@@ -14,10 +14,12 @@
     </el-table-column>
     <el-table-column label="字幕信息">
       <template #default="scope">
-        <template v-for="(item, index) in scope.row.desc">
-          <el-tag v-if="index === 0" style="margin: 3px">{{item}}</el-tag>
-          <el-tag v-else type="info" style="margin: 3px">{{item}}</el-tag>
-        </template>
+        <div v-html="scope.row.desc" class="desc"></div>
+      </template>
+    </el-table-column>
+    <el-table-column label="字幕大小/下载量/发布时间">
+      <template #default="scope">
+        <div v-html="scope.row.date" class="date"></div>
       </template>
     </el-table-column>
     <el-table-column label="字幕地址">
@@ -40,6 +42,15 @@ function openBrowser(url:string) {
   window.myAPI.openBrowser(url)
 }
 </script>
-<style scoped>
-
+<style scoped lang="scss">
+.desc {
+  :deep(.rounded){
+    padding: 3px 5px;
+    border-radius: 5px;
+    color: aliceblue;
+  }
+  :deep(.bg-secondary){
+    background-color: #6c757d;
+  }
+}
 </style>

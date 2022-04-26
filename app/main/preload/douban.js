@@ -13,7 +13,7 @@ module.exports = function (keyword) {
                 uri: `https://movie.douban.com/j/subject_suggest?q=${encodeURI(keyword)}`,
                 headers: {
                 },
-                // jQuery: false,
+                jQuery: false,
                 userAgent:
                     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.55',
                 // The global callback won't be called

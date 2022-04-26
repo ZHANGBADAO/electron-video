@@ -4,7 +4,7 @@ import {onMounted, ref} from 'vue'
 onMounted(() => {
 })
 
-const activeIndex = ref('/test')
+const activeIndex = ref('/home')
 function handleSelect(index: string) {
   console.log(index)
 }

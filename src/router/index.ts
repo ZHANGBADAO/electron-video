@@ -5,7 +5,7 @@ import Test from "../views/test/index.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/test",
+    redirect: "/home",
   },
   {
     path: "/home",

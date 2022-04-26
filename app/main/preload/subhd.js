@@ -32,12 +32,12 @@ function searchFromSubhd(keyword) {
                     let divArr = $('body > div.container > div > div > div > div.col-lg-9.pe-lg-4 > div.bg-white')
                     divArr.each(function (){
                         //字幕语言的描述
-                        let descArr = []
+                        /*let descArr = []
                         $(this).find('.pt-2.f11 > .p-1').each(function (){
                             if ($(this).children().length === 0) {
                                 descArr.push($(this).text())
                             }
-                        })
+                        })*/
 
                         resultArr.push({
                             imgUrl: $(this).find('img.rounded-start').attr('src'),
@@ -45,7 +45,8 @@ function searchFromSubhd(keyword) {
                             season: $(this).find('.ms-2 > .f12.fw-normal').text(),
                             subUrl: 'https://subhd.tv'+ $(this).find('a.link-dark.align-middle').attr('href'),//字幕地址
                             match: $(this).find('.text-secondary a.link-dark').text(),//匹配的片源
-                            desc: descArr,
+                            desc: $(this).find('.pt-2.f11').html(),//字幕语言的描述
+                            date: $(this).find('.pt-3.text-secondary.f12').html(),//字幕大小 下载量 发布时间
                         })
                     })
 
