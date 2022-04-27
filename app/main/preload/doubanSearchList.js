@@ -1,3 +1,4 @@
+// 不能在electron环境中使用
 const Nightmare = require('nightmare')
 
 const nightmare = Nightmare({
