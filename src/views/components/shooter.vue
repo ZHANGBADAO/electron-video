@@ -5,6 +5,11 @@
         <div v-html="scope.row.nameCn"></div>
       </template>
     </el-table-column>
+    <el-table-column label="字幕地址">
+      <template #default="scope">
+        <span style="cursor: pointer" @click="openBrowser(scope.row.url)">{{scope.row.url}}</span>
+      </template>
+    </el-table-column>
     <el-table-column label="字幕语言">
       <template #default="scope">
         <div v-html="scope.row.subLanguage"></div>
@@ -15,11 +20,7 @@
         <div v-html="scope.row.match"></div>
       </template>
     </el-table-column>
-    <el-table-column label="字幕地址">
-      <template #default="scope">
-        <span style="cursor: pointer" @click="openBrowser(scope.row.url)">{{scope.row.url}}</span>
-      </template>
-    </el-table-column>
+
     <el-table-column label="字幕格式">
       <template #default="scope">
         <div v-html="scope.row.subType"></div>

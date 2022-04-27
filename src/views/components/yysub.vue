@@ -5,16 +5,17 @@
         <div v-html="scope.row.nameCn"></div>
       </template>
     </el-table-column>
-    <el-table-column label="片源版本">
-      <template #default="scope">
-        <div v-html="scope.row.match"></div>
-      </template>
-    </el-table-column>
     <el-table-column label="字幕地址">
       <template #default="scope">
         <span style="cursor: pointer" @click="openBrowser(scope.row.url)">{{scope.row.url}}</span>
       </template>
     </el-table-column>
+    <el-table-column label="片源版本">
+      <template #default="scope">
+        <div v-html="scope.row.match"></div>
+      </template>
+    </el-table-column>
+
     <el-table-column label="发布时间">
       <template #default="scope">
         {{new Date(Number(scope.row.date) * 1000).toLocaleString()}}

@@ -1,12 +1,14 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const initPrinters = require('./print')
+const initMenu = require('./menu')
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
 
 app.whenReady().then(() => {
   const win = createWindow()
-  initPrinters(win)
+  initMenu()
+  // initPrinters(win)
 })
 
 app.on('window-all-closed', function () {

@@ -6,6 +6,11 @@
       </template>
     </el-table-column>
     <el-table-column prop="nameCn" label="名字(中文)" width="180" />
+    <el-table-column label="字幕地址">
+      <template #default="scope">
+        <span style="cursor: pointer" @click="openBrowser(scope.row.subUrl)">{{scope.row.subUrl}}</span>
+      </template>
+    </el-table-column>
     <el-table-column prop="season" label="集数" width="180" />
     <el-table-column label="对应片源">
       <template #default="scope">
@@ -22,11 +27,7 @@
         <div v-html="scope.row.date" class="date"></div>
       </template>
     </el-table-column>
-    <el-table-column label="字幕地址">
-      <template #default="scope">
-        <span style="cursor: pointer" @click="openBrowser(scope.row.subUrl)">{{scope.row.subUrl}}</span>
-      </template>
-    </el-table-column>
+
   </el-table>
 </template>
 
