@@ -7,6 +7,7 @@ const searchFromShooter = require('./shooter')
 const searchFromTorlock = require('./torlock')
 const searchFromYtsMx = require('./ytsMx')
 const searchFromYysub = require('./yysub')
+const searchFromDdrk = require('./ddrk')
 const utils = require('./utils')
 
 function openBrowser(url) {
@@ -22,6 +23,7 @@ contextBridge.exposeInMainWorld('myAPI', {
   searchFromTorlock,
   searchFromYtsMx,
   searchFromYysub,
+  searchFromDdrk,
   utils,
   openBrowser,
 })

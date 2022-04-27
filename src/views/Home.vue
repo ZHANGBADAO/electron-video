@@ -9,6 +9,7 @@ import shooterComponent from './components/shooter.vue'
 import torlockComponent from './components/torlock.vue'
 import ytsMxComponent from './components/ytsMx.vue'
 import yysubComponent from './components/yysub.vue'
+import ddrkComponent from './components/ddrk.vue'
 import iframeComponent from './components/iframeComponent.vue'
 
 onMounted(() => {
@@ -48,6 +49,7 @@ function menuItemClick(site:string) {
   if (_selectedMenu === 'torlock.com') searchFromTorlock()
   if (_selectedMenu === 'yts.mx') searchFromYtsMx()
   if (_selectedMenu === '人人影视') searchFromYysub()
+  if (_selectedMenu === '低端影视') searchFromDdrk()
 }
 
 //从webhd.cc搜索
@@ -152,6 +154,18 @@ function menuItemJump(url:string) {
   iframeUrl.value = url
   componentName.value = iframeComponent
 }
+//ddrk.me 低端影视搜索
+function searchFromDdrk(){
+  loading.value = true
+  //@ts-ignore
+  window.myAPI.searchFromDdrk(input.value).then((res)=>{
+    console.log('低端影视的搜索结果',res)
+    tableData.value = res
+    componentName.value = ddrkComponent
+  }).finally(() => {
+    loading.value = false
+  })
+}
 </script>
 
 <template>
@@ -186,9 +200,10 @@ function menuItemJump(url:string) {
               </template>
               <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">webhd.cc (推荐)</el-menu-item>
               <el-menu-item index="1-2" @click="menuItemClick('豆瓣搜索')">豆瓣搜索</el-menu-item>
-              <el-menu-item index="1-3" @click="menuItemClick('gaoqing.fm')">gaoqing.fm</el-menu-item>
-              <el-menu-item index="1-4" @click="menuItemClick('torlock.com')">torlock.com (需翻墙)</el-menu-item>
-              <el-menu-item index="1-5" @click="menuItemClick('yts.mx')">yts.mx</el-menu-item>
+              <el-menu-item index="1-3" @click="menuItemClick('gaoqing.fm')">高清fm</el-menu-item>
+              <el-menu-item index="1-4" @click="menuItemClick('低端影视')">低端影视</el-menu-item>
+              <el-menu-item index="1-5" @click="menuItemClick('torlock.com')">torlock.com (需翻墙)</el-menu-item>
+              <el-menu-item index="1-6" @click="menuItemClick('yts.mx')">yts.mx</el-menu-item>
 
             </el-sub-menu>
             <el-sub-menu index="2">
