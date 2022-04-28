@@ -1,8 +1,6 @@
 <template>
     <div class="iframe-component">
         <iframe :src="iframeUrl"
-                height="620"
-                width="100%"
         ></iframe>
     </div>
 </template>
@@ -18,6 +16,9 @@ defineProps({
 
 <style scoped lang="scss">
 iframe{
+  display: block;
   border: 0;
+  width: 100%;
+  height: calc(100vh - 148px);
 }
 </style>

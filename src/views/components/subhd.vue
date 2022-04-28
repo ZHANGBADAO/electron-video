@@ -1,14 +1,14 @@
 <template>
-  <el-table v-loading="props.loading" :data="props.tableData" height="620" border stripe style="width: 100%">
+  <el-table v-loading="props.loading" :data="props.tableData" height="100%" border stripe style="width: 100%">
     <el-table-column label="海报">
       <template #default="scope">
         <img :src="scope.row.imgUrl" alt="" style="width: 100px">
       </template>
     </el-table-column>
-    <el-table-column prop="nameCn" label="名字(中文)" width="180" />
+    <el-table-column prop="nameCn" label="名字(中文)" width="180"/>
     <el-table-column label="字幕地址">
       <template #default="scope">
-        <span style="cursor: pointer" @click="openBrowser(scope.row.subUrl)">{{scope.row.subUrl}}</span>
+        <span style="cursor: pointer" @click="openBrowser(scope.row.subUrl)">{{ scope.row.subUrl }}</span>
       </template>
     </el-table-column>
     <el-table-column prop="season" label="集数" width="180" />

@@ -1,5 +1,5 @@
 <template>
-  <el-table v-loading="props.loading" :data="props.tableData" height="620" border stripe style="width: 100%">
+  <el-table v-loading="props.loading" :data="props.tableData" height="100%" border stripe style="width: 100%">
     <el-table-column label="海报">
       <template #default="scope">
         <img :src="scope.row.img" alt="" style="width: 100px">
@@ -7,7 +7,7 @@
     </el-table-column>
     <el-table-column label="名字">
       <template #default="scope">
-        <span>{{scope.row.title}} ({{scope.row.year}})</span>
+        <span>{{ scope.row.title }} ({{ scope.row.year }})</span>
       </template>
     </el-table-column>
     <el-table-column prop="sub_title" label="副标题" />

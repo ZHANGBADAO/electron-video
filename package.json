@@ -1,5 +1,5 @@
 {
-  "name": "electron-video",
+  "name": "video-hunter",
   "repository": "https://github.com/ZHANGBADAO/electron-video",
   "scripts": {
     "vue serve": "vue-cli-service serve",
@@ -17,9 +17,10 @@
       "output": "release"
     },
     "nsis": {
-      "oneClick": false,
+      "oneClick": true,
       "perMachine": true,
-      "allowToChangeInstallationDirectory": true
+      "deleteAppDataOnUninstall": true,
+      "runAfterFinish": false
     },
     "win": {
       "icon": "./app/build/icon.ico",

@@ -15,11 +15,12 @@ function handleSelect(index: string) {
 <template>
   <div>
     <el-menu
-        :router="true"
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
+      :router="true"
+      :default-active="activeIndex"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      style="height: 40px"
     >
       <el-menu-item index="/home">搜索影视</el-menu-item>
       <el-menu-item index="/test" v-if="!isProduction">测试</el-menu-item>
