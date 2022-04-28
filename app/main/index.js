@@ -4,6 +4,7 @@ const initPrinters = require('./print')
 const initMenu = require('./menu')
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
+app.disableHardwareAcceleration()
 
 app.whenReady().then(() => {
   const win = createWindow()
@@ -31,8 +32,8 @@ function createWindow() {
   } else {
     // 开发环境
     win.maximize()
-    win.loadURL('http://localhost:8080')
     win.webContents.openDevTools({mode: 'bottom'})
+    win.loadURL('http://localhost:8080')
   }
 
   return win
