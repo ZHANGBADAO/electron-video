@@ -2,11 +2,11 @@
   "name": "video-hunter",
   "repository": "https://github.com/ZHANGBADAO/electron-video",
   "scripts": {
+    "build": "vue-cli-service build && electron-builder",
     "vue serve": "vue-cli-service serve",
     "vue build": "vue-cli-service build",
     "electron start": "electron ./app",
-    "electron build": "vue-cli-service build && electron-builder",
-    "electron build main": "electron-builder",
+    "electron build": "electron-builder",
     "postinstall": "electron-builder install-app-deps"
   },
   "author": "zhang badao",
