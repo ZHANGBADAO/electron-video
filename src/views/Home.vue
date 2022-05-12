@@ -174,7 +174,7 @@ function searchFromDdrk(){
       <el-header>
         <el-row :gutter="20" justify="center">
           <el-col :span="8">
-            <el-input v-model="input" placeholder="输入名称"
+            <el-input v-model="input" placeholder="输入名称" autofocus
                       @keyup.enter="searchFn"
             />
           </el-col>
