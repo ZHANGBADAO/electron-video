@@ -1,4 +1,5 @@
-const { ipcRenderer } = require('electron')
+const {ipcRenderer} = require('electron')
+const getVideoFromEdge = require('./getVideoFromEdge')
 
 function getAllPrintFn () {
   return new Promise((resolve, reject) => {
@@ -20,5 +21,6 @@ function startPrintFn () {
 
 module.exports = {
   getAllPrintFn,
-  startPrintFn
+  startPrintFn,
+  getVideoFromEdge,
 }
