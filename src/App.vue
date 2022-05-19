@@ -5,8 +5,17 @@ onMounted(() => {
 })
 
 const isProduction = process.env.NODE_ENV === 'production'
+let menuItemArr = [
+  {name: '搜索影视', path: '/home'},
+  {name: '获取edge视频', path: '/edge'},
+  {name: '测试', path: '/test'},
+]
+if (isProduction) {
+  menuItemArr.pop()
+}
 
 const activeIndex = ref('/home')
+
 function handleSelect(index: string) {
   console.log(index)
 }
@@ -21,9 +30,9 @@ function handleSelect(index: string) {
       mode="horizontal"
       @select="handleSelect"
     >
-      <el-menu-item index="/home">搜索影视</el-menu-item>
-      <el-menu-item index="/edge">获取edge视频</el-menu-item>
-      <el-menu-item index="/test" v-if="!isProduction">测试</el-menu-item>
+      <el-menu-item v-for="item in menuItemArr" :index="item.path"
+                    :key="item.path">{{ item.name }}
+      </el-menu-item>
     </el-menu>
 
     <div class="content">
