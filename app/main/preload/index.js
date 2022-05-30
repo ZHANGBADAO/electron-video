@@ -8,6 +8,7 @@ const searchFromTorlock = require('./torlock')
 const searchFromYtsMx = require('./ytsMx')
 const searchFromYysub = require('./yysub')
 const searchFromDdrk = require('./ddrk')
+const searchFromEztv = require('./eztv')
 const utils = require('./utils')
 
 function openBrowser(url) {
@@ -24,6 +25,7 @@ contextBridge.exposeInMainWorld('myAPI', {
   searchFromYtsMx,
   searchFromYysub,
   searchFromDdrk,
+  searchFromEztv,
   utils,
   openBrowser,
 })

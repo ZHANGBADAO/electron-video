@@ -1,4 +1,4 @@
-const {ipcRenderer} = require('electron')
+const {ipcRenderer, clipboard} = require('electron')
 const getVideoFromEdge = require('./getVideoFromEdge')
 
 function getAllPrintFn () {
@@ -10,7 +10,7 @@ function getAllPrintFn () {
   })
 }
 
-function startPrintFn () {
+function startPrintFn() {
   return new Promise((resolve, reject) => {
     ipcRenderer.send('print', 'startPrint')
     ipcRenderer.on('print', (event, arg) => {
@@ -19,8 +19,14 @@ function startPrintFn () {
   })
 }
 
+// 文本写入剪贴板
+function writeTextToClipboard(text) {
+  clipboard.writeText(text)
+}
+
 module.exports = {
   getAllPrintFn,
   startPrintFn,
   getVideoFromEdge,
+  writeTextToClipboard,
 }
