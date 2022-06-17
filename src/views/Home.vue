@@ -11,6 +11,7 @@ import ytsMxComponent from './components/ytsMx.vue'
 import yysubComponent from './components/yysub.vue'
 import ddrkComponent from './components/ddrk.vue'
 import eztvComponent from './components/eztv.vue'
+import x1337Component from './components/1337x.vue'
 import iframeComponent from './components/iframeComponent.vue'
 
 let input = ref('')//搜索关键词
@@ -136,7 +137,92 @@ const siteMap = new Map([
       searchMethod: 'searchFromEztv'
     }
   ],
+  [
+    '1337x',
+    {
+      component: x1337Component,
+      searchMethod: 'searchFrom1337x'
+    }
+  ],
 ])
+
+// 视频菜单
+const videoMenuArr = [
+  {
+    name: 'webhd.cc (推荐)',
+    value: 'webhd.cc'
+  },
+  {
+    name: '豆瓣搜索',
+    value: '豆瓣搜索'
+  },
+  {
+    name: '高清fm',
+    value: 'gaoqing.fm'
+  },
+  {
+    name: '低端影视',
+    value: '低端影视'
+  },
+  {
+    name: '1337x(需翻墙)',
+    value: '1337x'
+  },
+  {
+    name: 'torlock.com(需翻墙)',
+    value: 'torlock.com'
+  },
+  {
+    name: 'yts.mx',
+    value: 'yts.mx'
+  },
+  {
+    name: 'eztv电视剧',
+    value: 'eztv电视剧'
+  },
+  {
+    name: 'BT Hub(需翻墙)',
+    value: 'BT Hub'
+  },
+  {
+    name: '蓝光发售日期',
+    value: '蓝光发售日期'
+  },
+
+]
+
+//字幕菜单
+const subtitleMenuArr = [
+  {
+    name: 'subhd.tv (推荐)',
+    value: 'subhd.tv'
+  },
+  {
+    name: '人人影视',
+    value: '人人影视'
+  },
+  {
+    name: '射手',
+    value: '射手'
+  },
+  {
+    name: '字幕库',
+    value: '字幕库'
+  },
+  {
+    name: 'A4k字幕网',
+    value: 'A4k字幕网'
+  },
+  {
+    name: 'R3字幕网(台版字幕)',
+    value: 'R3字幕网'
+  },
+  {
+    name: 'subscene',
+    value: 'subscene'
+  },
+
+]
 
 function searchFromWebsite() {
   const siteObj = siteMap.get(_selectedMenu)
@@ -197,30 +283,11 @@ function openBrowser(url: string) {
                 <template #title>
                   <span>视频</span>
                 </template>
-                <el-menu-item index="1-1" @click="menuItemClick('webhd.cc')">
-                  webhd.cc (推荐)
-                </el-menu-item>
-                <el-menu-item index="1-2" @click="menuItemClick('豆瓣搜索')">豆瓣搜索
-                </el-menu-item>
-                <el-menu-item index="1-3" @click="menuItemClick('gaoqing.fm')">
-                  高清fm
-                </el-menu-item>
-                <el-menu-item index="1-4" @click="menuItemClick('低端影视')">低端影视
-                </el-menu-item>
-                <el-menu-item index="1-5" @click="menuItemClick('torlock.com')">
-                  torlock.com(需翻墙)
-                </el-menu-item>
-                <el-menu-item index="1-6" @click="menuItemClick('yts.mx')">
-                  yts.mx
-                </el-menu-item>
-                <el-menu-item index="1-7" @click="menuItemClick('eztv电视剧')">
-                  eztv电视剧
-                </el-menu-item>
-                <el-menu-item index="1-8" @click="menuItemClick('BT Hub')">BT
-                  Hub(需翻墙)
-                </el-menu-item>
-                <el-menu-item index="1-9" @click="menuItemClick('蓝光发售日期')">
-                  蓝光发售日期
+
+                <el-menu-item v-for="(item, index) in videoMenuArr"
+                              :index="`1-${index+1}`"
+                              @click="menuItemClick(item.value)">
+                  {{ item.name }}
                 </el-menu-item>
 
               </el-sub-menu>
@@ -228,23 +295,11 @@ function openBrowser(url: string) {
                 <template #title>
                   <span>字幕</span>
                 </template>
-                <el-menu-item index="2-1" @click="menuItemClick('subhd.tv')">
-                  subhd.tv (推荐)
-                </el-menu-item>
-                <el-menu-item index="2-2" @click="menuItemClick('人人影视')">人人影视
-                </el-menu-item>
-                <el-menu-item index="2-3" @click="menuItemClick('射手')">射手
-                </el-menu-item>
-                <el-menu-item index="2-4" @click="menuItemClick('字幕库')">字幕库
-                </el-menu-item>
-                <el-menu-item index="2-5" @click="menuItemClick('A4k字幕网')">
-                  A4k字幕网
-                </el-menu-item>
-                <el-menu-item index="2-6" @click="menuItemClick('R3字幕网')">
-                  R3字幕网(台版字幕)
-                </el-menu-item>
-                <el-menu-item index="2-7" @click="menuItemClick('subscene')">
-                  subscene
+
+                <el-menu-item v-for="(item, index) in subtitleMenuArr"
+                              :index="`2-${index+1}`"
+                              @click="menuItemClick(item.value)">
+                  {{ item.name }}
                 </el-menu-item>
 
               </el-sub-menu>
