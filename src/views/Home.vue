@@ -35,7 +35,7 @@ function menuItemClick(site: string) {
     return
   }
 
-  if (['字幕库', 'subscene', 'BT Hub'].includes(_selectedMenu)) {
+  if (['字幕库', 'subscene', 'BT Hub','海盗湾'].includes(_selectedMenu)) {
     // 打开浏览器搜索
     componentName.value = null
     //@ts-ignore
@@ -48,6 +48,7 @@ function menuItemClick(site: string) {
         _selectedMenu === '字幕库' && openBrowser(`http://zmk.pw`)
         _selectedMenu === 'subscene' && openBrowser(`https://subscene.com/`)
         _selectedMenu === 'BT Hub' && openBrowser(`http://bthub.link/`)
+        _selectedMenu === '海盗湾' && openBrowser(`https://thepiratebay.org/index.html`)
       }
     })
     return;
@@ -168,10 +169,7 @@ const videoMenuArr = [
     name: '1337x(需翻墙)',
     value: '1337x'
   },
-  {
-    name: 'torlock.com(需翻墙)',
-    value: 'torlock.com'
-  },
+
   {
     name: 'yts.mx',
     value: 'yts.mx'
@@ -181,8 +179,16 @@ const videoMenuArr = [
     value: 'eztv电视剧'
   },
   {
+    name: '海盗湾(需翻墙)',
+    value: '海盗湾'
+  },
+  {
     name: 'BT Hub(需翻墙)',
     value: 'BT Hub'
+  },
+  {
+    name: 'torlock.com(需翻墙)',
+    value: 'torlock.com'
   },
   {
     name: '蓝光发售日期',
