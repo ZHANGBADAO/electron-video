@@ -35,7 +35,7 @@ function menuItemClick(site: string) {
     return
   }
 
-  if (['字幕库', 'subscene', 'BT Hub','海盗湾'].includes(_selectedMenu)) {
+  if (['字幕库', 'subscene', 'BT Hub'].includes(_selectedMenu)) {
     // 打开浏览器搜索
     componentName.value = null
     //@ts-ignore
@@ -48,18 +48,18 @@ function menuItemClick(site: string) {
         _selectedMenu === '字幕库' && openBrowser(`http://zmk.pw`)
         _selectedMenu === 'subscene' && openBrowser(`https://subscene.com/`)
         _selectedMenu === 'BT Hub' && openBrowser(`http://bthub.link/`)
-        _selectedMenu === '海盗湾' && openBrowser(`https://thepiratebay.org/index.html`)
       }
     })
     return;
   }
 
-  if (['A4k字幕网', 'R3字幕网', '蓝光发售日期'].includes(_selectedMenu)) {
+  if (['A4k字幕网', 'R3字幕网', '蓝光发售日期', '海盗湾'].includes(_selectedMenu)) {
     // 打开浏览器搜索
     componentName.value = null
     _selectedMenu === 'A4k字幕网' && openBrowser(`https://www.a4k.net/search?term=${input.value}`)
     _selectedMenu === 'R3字幕网' && openBrowser(`https://r3sub.com/search.php?s=${input.value}`)
     _selectedMenu === '蓝光发售日期' && openBrowser(`https://www.blu-ray.com/search/?quicksearch=1&quicksearch_country=US&quicksearch_keyword=${input.value}&section=bluraymovies`)
+    _selectedMenu === '海盗湾' && openBrowser(`https://thepiratebay.org/search.php?q=${input.value}&all=on&search=Pirate+Search&page=0&orderby=`)
     return;
   }
 
